@@ -135,3 +135,8 @@
     * __модель для формулы__
     * __теорема Гёделя о полноте исчисления предикатов (формулировка)__
     * __следствие из теоремы Гёделя о исчислении предикатов__
+
+
+[Шень, Верещагин](https://www.mccme.ru/free-books/shen/shen-logic-part2-2.pdf)
+[Инт. логика](http://lpcs.math.msu.su/~plisko/intlog.pdf)
+[Конспект 2011](https://github.com/shd/logic2011/blob/master/conspect.pdf)
