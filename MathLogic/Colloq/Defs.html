@@ -66,7 +66,7 @@
   где $\alpha_k = \alpha$.</li>
 <li><strong>множество истинностных значений</strong></li>
 <li><strong>модель (оценка переменных)</strong></li>
-<li><strong>оценка высказывания</strong></li>
+<li><strong>оценка высказывания</strong> &mdash; Отображение: формула $\rightarrow$ множество истинностных значений</li>
 <li><strong>общезначимость ($\models$)</strong> &mdash; истинность при любой оценке</li>
 <li><strong>выполнимость</strong></li>
 <li><strong>невыполнимость</strong></li>
@@ -77,24 +77,50 @@
 <li><strong>формулировка теоремы о дедукции</strong> $\Gamma \vdash \alpha \rightarrow \beta \iff \Gamma, \alpha \vdash \beta$</li>
 </ul>
 </li>
-<li><p><strong>Интуиционистское исчисление высказываний</strong></p>
+<li><p><strong>Интуиционистское исчисление высказываний</strong>
+  (заменили аксиому снятия двойного отрицания на $\alpha \rightarrow \neg \alpha \rightarrow \beta$)</p>
 
 <ul>
-<li><strong>закон исключённого третьего</strong></li>
-<li><strong>закон снятия двойного отрицания</strong></li>
-<li><strong>закон Пирса</strong></li>
-<li><strong>BHK-интерпретация логических связок</strong></li>
-<li><strong>теорема Гливенко (формулировка)</strong></li>
-<li><strong>решётка</strong></li>
-<li><strong>дистрибутивная решётка</strong></li>
-<li><strong>импликативная решётка</strong></li>
-<li><strong>алгебра Гейтинга</strong></li>
-<li><strong>булева алгебра</strong></li>
+<li><strong>закон исключённого третьего</strong> $\alpha \vee \neg \alpha$</li>
+<li><strong>закон снятия двойного отрицания</strong> $\neg \neg \alpha \rightarrow \alpha$</li>
+<li><strong>закон Пирса</strong> $((\alpha \rightarrow \beta) \rightarrow \alpha) \rightarrow \alpha$</li>
+<li><strong>BHK-интерпретация логических связок</strong><br/>
+  $\alpha \&amp; \beta$, если есть доказательство $\alpha$ и $\beta$<br/>
+  $\alpha \vee \beta$, если есть доказательство $\alpha$ или $\beta$ и мы знаем, чего именно<br/>
+  $\alpha \rightarrow \beta$, если мы умеем строить доказательство $\beta$ из доказательства $\alpha$<br/>
+  $\neg \alpha$, если из $\alpha$ можно построить противоречие ($\alpha \rightarrow \perp$)</li>
+<li><strong>теорема Гливенко (формулировка)</strong> Если $\vdash_{\text{к}} \alpha$, то $\vdash_{\text{и}} \neg \neg \alpha$</li>
+<li><strong>решётка</strong><br/>
+  $\langle A, \leq \rangle$ &mdash; решётка, если:
+
+<ul>
+<li>$\forall a,b \in A: \quad \exists \text{наименьший } c = a + b : a \leq c, b \leq c $</li>
+<li>$\forall a,b \in A: \quad \exists \text{наибольший } c = a \cdot b : c \leq a, c \leq b $</li>
+</ul>
+</li>
+<li><strong>дистрибутивная решётка</strong><br/>
+  решётка + свойство: $a+(b \cdot c) = a \cdot b + a \cdot c$<br/>
+  <strong>лемма</strong>: $a\cdot(b+c) = a\cdot b + a \cdot c$<br/>
+  <strong>теорема</strong>: решётка дистрибутивна $\iff$ не содержит ни диаманта ни пентагона</li>
+<li><strong>импликативная решётка</strong><br/>
+  дистрибутивная решётка + определена операция псевдодополнения (относительно $b$):
+      $c = a \rightarrow b = max \{ x | x \cdot a \leq b \}$<br/>
+  <strong>теорема</strong>: дистрибутивность в определении можно опустить<br/>
+  <strong>def</strong>: <em>1</em> &mdash; наибольший элемент решётки<br/>
+  <strong>def</strong>: <em>0</em> &mdash; наименьший элемент решётки</li>
+<li><strong>алгебра Гейтинга</strong> &mdash; Импликативная решётка с 0<br/>
+  <strong>def</strong>: <em>псевдодополнение</em> $~a = a \rightarrow 0$</li>
+<li><strong>булева алгебра</strong> &mdash; алгебрa Гейтинга такая, что $\forall a: a + ~a = 1$</li>
 <li><strong>гомоморфизм алгебр Гейтинга</strong></li>
-<li><strong>Гёделева алгебра</strong></li>
-<li><strong>операция Γ(A)</strong></li>
-<li><strong>алгебра Линденбаума</strong></li>
-<li><strong>формулировка свойства дизъюнктивности и.и.в</strong></li>
+<li><strong>Гёделева алгебра</strong><br/>
+  Алгебра Гейтинга <em>гёделева</em>, если $\forall a,b : (a+b=1 \implies a=1 | b=1)$</li>
+<li><strong>операция Γ(A)</strong>
+  Добавим к алгебре Гейтинга новую &ldquo;1&rdquo;, большую всех элементов, а старую переименуем в &ldquo;$\omega$&rdquo;.</li>
+<li><strong>алгебра Линденбаума</strong>
+  Пусть $\alpha$, $\beta$ &mdash; формулы, $\alpha \leq \beta$, если $\beta\vdash\alpha$,
+  $\alpha \approx \beta$, если $\alpha \leq \beta \&amp; \beta \leq \alpha $<br/>
+  Тогда, <em>алгебра Линденбаума</em> &mdash; $\text{ИИВ}/_{\approx}$ [факторизация по операции $\approx$]</li>
+<li><strong>формулировка свойства дизъюнктивности и.и.в</strong> &mdash; $\vdash \alpha \vee \beta \implies \vdash \alpha \text{ или } \vdash \beta$</li>
 <li><strong>формулировка свойства нетабличности и.и.в.</strong></li>
 </ul>
 </li>
@@ -142,7 +168,7 @@ V множество истинностынх значений</p>
 <li><strong>полное множество (бескванторных) формул</strong></li>
 <li><strong>модель для формулы</strong></li>
 <li><strong>теорема Гёделя о полноте исчисления предикатов (формулировка)</strong></li>
-<li>__следствие из теоремы Гёделя о исчислении предикатов</li>
+<li><strong>следствие из теоремы Гёделя о исчислении предикатов</strong></li>
 </ul>
 </li>
 </ul>
