@@ -1,12 +1,18 @@
+OBJECTS=Integrals.pdf
+OUTDIR=.
 
-all: Integrals.pdf
+all: pdf
+.PHONY: pdf install all clean
+
+pdf: $(OBJECTS)
 
 clean:
 	rm -rf *.pdf
 
-.PHONY: all clean
+install: pdf
+	mkdir -p $(PREFIX)
+	cp $(OUTDIR)/*.pdf $(PREFIX)
 
-OUTDIR=.
 
 $(OUTDIR)/%.pdf: %.html
 	wkhtmltopdf -O Landscape -s A5 --javascript-delay 5000 $< $@
