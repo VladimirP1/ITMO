@@ -11,6 +11,7 @@ clean:
 	rm -rf *.html
 
 $(BUILDDIR)/%._html: %.md
+	mkdir -p $(BUILDDIR)
 	markdown $< > $@
 
 $(OUTDIR)/%.html: $(BUILDDIR)/%._html

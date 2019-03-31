@@ -7,7 +7,7 @@ notifications:
 
 before_install:
 - sudo apt-get update
-- sudo apt-get install wkhtmltopdf make zip
+- sudo apt-get install wkhtmltopdf make zip markdown
 
 script:
     - make PREFIX="$PWD/output" -C MathAnalysis/Sem4 install
