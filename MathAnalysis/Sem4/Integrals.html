@@ -3,10 +3,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
+			TeX: { extensions: ["color.js"] },
             tex2jax: {
                 inlineMath: [["$","$"],["\\(","\\)"]],
                 displayMath: [['$$','$$']]
-            }
+            },
+            displayAlign: "left"
           });
         </script>
         <script type="text/javascript"
@@ -83,7 +85,63 @@
         <h3>Поле векторное</h3>
         <p>TODO</p>
         <h3>Ротор, дивергенция и набла</h3>
-        <p>TODO</p>
+        <p>
+            $\nabla = \left( \dfrac \partial {\partial x},  \dfrac \partial {\partial y},  \dfrac \partial {\partial z} \right) $<br>
+            $grad f = \nabla f$
+            $div \overline a = \nabla \cdot \overline a$<br>
+            $rot \overline a = \nabla \times \overline a$<br><br>
+            <table border="1" bordercolor="yellow">
+                <tr><th>Свойства $\nabla$:</th></tr>
+                <tr><td>$\nabla (c_1f + c_2g) = c_1 \nabla f + c_2 \nabla g$</td></tr>
+                <tr><td>$\nabla (f g) = f \nabla g + g \nabla f$</td></tr> $\newcommand{f}{\overline f} \newcommand{g}{\overline g}$
+                <tr><td>
+                    $
+                    \nabla \cdot (\f \times \g) = (\nabla, \f, \g) = \\ 
+                    \begin{pmatrix}
+                    \frac \partial {\partial x} &&  \frac \partial {\partial y} &&  \frac \partial {\partial z} \\
+                    f_x && f_y && f_z \\
+                    g_x && g_y && g_z
+                    \end{pmatrix}= \\
+                    \begin{pmatrix}
+                    g_x && g_y && g_z \\
+                    \frac \partial {\partial x} &&  \frac \partial {\partial y} &&  \frac \partial {\partial z} \\
+                    f_x && f_y && f_z
+                    \end{pmatrix} -
+                    \begin{pmatrix}
+                    f_x && f_y && f_z \\
+                    \frac \partial {\partial x} &&  \frac \partial {\partial y} &&  \frac \partial {\partial z} \\
+                    g_x && g_y && g_z
+                    \end{pmatrix}= \\
+                    = \g(\nabla \times \f) - \f(\nabla \times \g)
+                    $
+                </td></tr>
+            </table>
+            <p>
+                Из СР по матану: $\nabla \times (c \times a) = c \cdot (\nabla \cdot a) - (c \cdot \nabla) \cdot a$ <br>
+                Подумаем, шо ж такое слева написано.
+                $\dfrac{\partial}{\partial x} \left(\sum\right) + \dfrac{\partial}{\partial y} \left(\sum\right) + \dfrac{\partial}{\partial z} \left(\sum\right)$.
+                Сейчас не важно, что это за суммы. Важно лишь то, что они имеют вид $\sum_i \dfrac \partial {\partial ?} c_i a_i$.
+                Это значит, что под оператором дифференцирования есть одна константа и одна функция!
+                Значит, с дифференцировением можно делать всё, что угодно, но только не переставлять правее, чем $a_i$.
+                Забудем, что это оператор дифференцирования и применим формулу
+                <a href="https://ru.wikipedia.org/wiki/%D0%94%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%B5_%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5#%D0%A4%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D0%B0_%D0%9B%D0%B0%D0%B3%D1%80%D0%B0%D0%BD%D0%B6%D0%B0">"BAC-CAB"</a>.
+                Понятно, что в доказательстве (доступно по последней ссылке) никто не переставлял дифференцирование с $a_i$ и мы можем применить эту формулу.
+            </p>
+            <p>
+                Теперь и формула (12) со страницы 14 
+                <a href="https://github.com/buraindo/ITMO/blob/master/Mathanalysis/4thSemester/Conspectus/Conspectus.pdf">отсюда</a>
+                [та, которую Родина не смогла доказать]
+                , теряет свой мистический облик. Рассмотрим $\nabla \times (f \times g)$.
+                Формула имеет почти тот же вид, но под оператором дифференцирования теперь произведение функций.
+                Но мы знаем, что для каждого слагаемого выполнены правила дифференцирования, то есть
+                $(ab)' = ab' \text{ [считаем a константой] } + ba' \text{ [считаем b константой] }$. Значит, и для всей суммы они выполнены.
+                Применим это сюда: $\nabla \times (f \times g) = \nabla \times (\hat f \times g) + \nabla \times (f \times \hat g)$ 
+                $\text{ /"треугольной шапочкой" обозначено то, что мы интерпретируем функцию как константу/ } = $
+                ${\color{red}\nabla \times (\hat f \times g)} - {\color{green}\nabla \times (\hat g \times f)} = \text{ /по предыдущей формуле/ } = $
+                ${\color{red}f \cdot (\nabla \cdot g) - (f \cdot \nabla) \cdot g} {\color{green} - (g \cdot (\nabla \cdot f) - (g \cdot \nabla) \cdot f)} =$
+                ${\color{red}f \cdot (\nabla \cdot g) - (f \cdot \nabla) \cdot g} {\color{green} - g \cdot (\nabla \cdot f) + (g \cdot \nabla) \cdot f}$
+            </p>
+        </p>
         <h3>Формула Гаусса-Остроградского</h3>
         <p>TODO</p>
         <h3>Формула Стокса</h3>
