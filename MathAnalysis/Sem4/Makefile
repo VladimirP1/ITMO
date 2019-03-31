@@ -9,4 +9,4 @@ clean:
 OUTDIR=.
 
 $(OUTDIR)/%.pdf: %.html
-	wkhtmltopdf --javascript-delay 5000 $< $@
+	wkhtmltopdf -O Landscape -s A5 --javascript-delay 5000 $< $@
