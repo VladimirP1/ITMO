@@ -1,0 +1,12 @@
+sudo: required
+language: generic
+
+notifications:
+    email: false
+
+before_install:
+- sudo apt-get update
+- sudo apt-get install wkhtmltopdf make
+
+script:
+    - make -C MathAnalysis/Sem4
