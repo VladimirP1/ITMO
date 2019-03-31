@@ -11,6 +11,7 @@ before_install:
 
 script:
     - make PREFIX="$PWD/output" -C MathAnalysis/Sem4 install
+    - make PREFIX="$PWD/output" -C MathLogic/Colloq install
     - zip -r release.zip output
 deploy:
         provider: releases
