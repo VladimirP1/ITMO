@@ -23,7 +23,7 @@
   где $X$(<em>носитель</em>) &mdash; множество,
   а $\Omega$(<em>топология</em>) &mdash; множество каких-то его подмножеств.</li>
 <li><span style="color:olive;"><strong>открытое и замкнутое множество</strong></span><br/>
-  <em>Открытое множество</em> &mdash; множество из $X$.<br/>
+  <em>Открытое множество</em> &mdash; множество из $\Omega$.<br/>
   <em>Замкнутое множество</em> &mdash; мн-во, дополнение которого открыто.</li>
 <li><span style="color:olive;"><strong>внутренность и замыкание множества</strong></span><br/>
   <em>внутренность $A$</em> &mdash; максимальное открытое множество $A^\circ$, входящее в $A$<br/>
@@ -157,8 +157,13 @@
   Не связанные и не связывающие вхождения &mdash; <em>свободные</em>.
   Терм θ <em>свободен для подстановки</em> в формулу ψ вместо x, если после подстановки θ вместо свободных вхождений x, θ не станет связанным.
   </pre></li>
-<li><strong>два правила для кванторов</strong></li>
-<li><strong>две аксиомы для кванторов</strong></li>
+<li><span style="color:green;"><strong>два правила для кванторов</strong></span><br/>
+  $\newenvironment{rcases}{\left.\begin{array}}{\end{array}\right\rbrace}$
+  \(\begin{rcases}{l}11. (\forall x.\phi) \rightarrow \phi [x:=\Theta]\\12. \phi [x:=\Theta] \rightarrow \exists x.\phi\end{rcases}\)
+  , где $\Theta$ свободна для подстановки вместо $x$ в $\phi$</li>
+<li><span style="color:green;"><strong>две аксиомы для кванторов</strong></span><br/>
+  \(\begin{rcases}{l}2. \dfrac{\psi \rightarrow \phi}{\psi \rightarrow \forall x.\phi} \\3. \dfrac{\phi \rightarrow \psi}{(\exists x.\phi) \rightarrow \psi} \end{rcases}\)
+  , где $x$ не входит свободно в $\psi$</li>
 <li><strong>оценки и модели в исчислении предикатов</strong></li>
 <li><strong>теорема о дедукции для И. П.</strong></li>
 <li><strong>теорема о корректности для И. П.</strong></li>

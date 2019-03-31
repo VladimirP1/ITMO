@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [["$","$"],["\\(","\\)"]],
+                displayMath: [['$$','$$']]
+            }
+          });
+        </script>
+        <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+        <title>Интегралы</title>
+    </head>
+    <body>
+        <h2>Интегралы</h2>
+        <table border="1">
+            <tr>
+                <th>Интеграл</th>
+                <th>Определение</th>
+                <th>Как вычислять</th>
+                <th>Свойства</th>
+                <th>+</th>
+            </tr>
+            <tr>
+                <td>Криволинейный интеграл 1</td>
+                <td>$\int_\alpha^\beta f(x(t),y(y),z(t)) ||\overline r' (t)|| dt = \int_\Gamma f dl$</td>
+                <td>Параметризовать кривую и тупо вычислить</td>
+                <td>
+                    <ul>
+                        <li>Не зависит от параметризации кривой</li>
+                        <li>Не зависит от направления кривой</li>
+                        <li>Линейность</li>
+                        <li>Аддитивность</li>
+                    </ul>
+                </td>
+                <td>$\int$ &mdash; масса кривой, если $f$ &mdash; её плотность</td>
+            </tr>
+            <tr>
+                <td>Криволинейный интеграл 2</td>
+                <td>$\int_\alpha^\beta \overline F \cdot \overline r'(t) dt = \int_\alpha^\beta (P(x,y,z)x'(t) + Q(x,y,z)y'(t) + R(x,y,z)z'(t))$<br>
+                    Обозначение: $\int_\Gamma \overline F d \overline r = \int_\Gamma Pdx + Qdy + Rdz$
+                </td>
+                <td>Либо так же, как первого рода(параметризовать кривую)<br>Либо <span style="color:red">TODO</span></td>
+                <td>Всё то же самое, но зависит от направления кривой</td>
+                <td>$F$ &mdash; векторное поле, тогда $\int$ его работа вдоль кривой</td>
+            </tr>
+            <tr>
+                <td>Поверхностный интеграл 1</td>
+                <td>$\int \int_\Omega f(x,y,z) |\overline r_u \times \overline r_v| dudv = \int \int_\Sigma f(x,y,z) ds$
+                </td>
+                <td>Либо параметризовать поверхность и вычислить через двойной<br>Либо, через формулу Стокса<br><b></b></td>
+                <td>
+                    <ul>
+                        <li>$|\overline r_u \times \overline r_v| = \sqrt{EG-F^2} = $
+                            $\sqrt{|\overline r_u |^2 |\overline r_v|^2 - (\overline r_u \cdot \overline r_v)^2}$,
+                            где $E = |\overline r_u|^2, G = |\overline r_v|^2, F = r_u \cdot r_v $</li>
+                        <li>Подставим $f=1$, тогда $\int$ &mdash; площадь поверхности</li>
+                    </ul>
+                </td>
+                <td>Как бы масса поверхности, если $f$ &mdash; функция плотности</td>
+            </tr>
+            <tr>
+                <td>Поверхностный интеграл 2</td>
+                <td>$\int \int_\Sigma \overline F \cdot \overline n_0 d s = \int \int_\Sigma Pdydz + Qdzdx + R dxdy$
+                </td>
+                <td>$$ \int \int_\Sigma Pdydz + Qdzdx + Rdxdy = \\
+                    \pm \int \int_{\Sigma_{yz}} P(x(y,z),y,z)dydz \\
+                    \pm \int \int_{\Sigma_{zx}} P(x,y(x,z),z)dzdx \\
+                    \pm \int \int_{\Sigma_{xy}} P(x,y,z(x,y))dxdy$$
+                    <br>что касается знаков, берём "+", если угол между нормалью и осью, не фигурирующей в дифференциале острый, ичаче "-"
+                    <br><br>Либо через формулу Гаусса-Остроградского</td>
+                <td></td>
+                <td>Поток векторного поля через двусторонюю поверхность</td>
+            </tr>
+        </table>
+        <h2>Фигня, с ними связанная</h2>
+        <h3>Формула Гаусса-Остроградского</h3>
+        <p>TODO</p>
+        <h3>Формула Стокса</h3>
+        <p>TODO</p>
+    </body>
+</html>
+
