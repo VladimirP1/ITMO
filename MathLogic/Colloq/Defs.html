@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
+
     <title>Матлог Коллоквиум</title>
 
     <script type="text/x-mathjax-config">
@@ -114,16 +114,15 @@
   <br>Всякая алгебра Гейтинга &mdash; модель ИИВ
 </li>
 <li><span style="color:#066600;"><strong>булева алгебра</strong></span> &mdash; алгебрa Гейтинга такая, что $\forall a: a + ~a = 1$</li>
-<li><strong>гомоморфизм алгебр Гейтинга</strong></li>
 <li><span style="color:#066600;"><strong>Гёделева алгебра</strong></span><br/>
   Алгебра Гейтинга <em>гёделева</em>, если $\forall a,b : (a+b=1 \implies a=1 | b=1)$</li>
 <li><span style="color:#066600;"><strong>операция Γ(A)</strong></span>
   Добавим к алгебре Гейтинга новую &ldquo;1&rdquo;, большую всех элементов, а старую переименуем в &ldquo;$\omega$&rdquo;.</li>
-<li><span style="color:#066600;"><strong>алгебра Линденбаума</strong></span>
-  Пусть $\alpha$, $\beta$ &mdash; формулы, $\alpha \leq \beta$, если $\beta\vdash\alpha$,
+<li><span style="color:#066600;"><strong>алгебра Линденбаума</strong></span>  Пусть $\alpha$, $\beta$ &mdash; формулы, $\alpha \leq \beta$, если $\beta\vdash\alpha$,
   $\alpha \approx \beta$, если $\alpha \leq \beta \&amp; \beta \leq \alpha $<br/>
   Тогда, <em>алгебра Линденбаума</em> &mdash; $\text{ИИВ}/_{\approx}$ [факторизация по операции $\approx$]
-  <br>Алгебра Линденбаума &mdash; точная модель ИИВ. Но нифига не конечная.
+  <br><b>теорема</b>: Алгебра Линденбаума &mdash; точная модель ИИВ. Но нифига не конечная.
+  <br><b>теорема</b>: Алгебра Линденбаума &mdash; Гёделева
 </li>
 <li><span style="color:#066600;"><strong>формулировка свойства дизъюнктивности и.и.в</strong></span> &mdash; $\vdash \alpha \vee \beta \implies \vdash \alpha \text{ или } \vdash \beta$</li>
 <li>Определить <em>модель</em>, значит задать логические связки и истинностные значения</li>
@@ -132,6 +131,7 @@
 <li>Модель <em>точная</em>, она корректна и полна</li>
 <li>Исчисление называют <em>табличным</em>, если существует конечная точная модель этого исчисления</li>
 <li><span style="color:#066600;"><strong>формулировка свойства нетабличности и.и.в.</strong></span>: ИИВ не таблично (см выше)</li>
+<!--<li>ИИВ + модели Крипке &mdash; полна теория</li>-->
 </ul>
 </li>
 <li><p><strong>Исчисление предикатов</strong></p>
@@ -157,7 +157,7 @@
           (ФОРМУЛА &amp;  ФОРМУЛА) |
           (ФОРМУЛА -&gt; ФОРМУЛА) |
           (!ФОРМУЛА) |
-          (∀ <span style="color:red;">предметная переменная</span>.ФОРМУЛА) |
+          (∀ <span style="color:red;">предметная переменная</span>.ФОРМУЛА) |
           (∃<span style="color:red;"> предметная переменная</span>.ФОРМУЛА) |</span>
           (<span style="color:green;">предикатный символ</span>)(<span style="color:red;">ТЕРМ</span>₀,<span style="color:red;"> ТЕРМ</span>₁, &hellip;)<br/>
   <em>Связанное</em> вхождение &mdash; вхождение в области действия квантора.
@@ -173,17 +173,58 @@
 <li><span style="color:green;"><strong>две аксиомы для кванторов</strong></span><br/>
   \(\begin{rcases}{l}2. \dfrac{\psi \rightarrow \phi}{\psi \rightarrow \forall x.\phi} \\3. \dfrac{\phi \rightarrow \psi}{(\exists x.\phi) \rightarrow \psi} \end{rcases}\)
   , где $x$ не входит свободно в $\psi$</li>
-<li><strong>оценки и модели в исчислении предикатов</strong></li>
-<li><strong>теорема о дедукции для И. П.</strong></li>
-<li><strong>теорема о корректности для И. П.</strong></li>
-<li><strong>полное множество (бескванторных) формул</strong></li>
-<li><strong>модель для формулы</strong></li>
-<li><strong>теорема Гёделя о полноте исчисления предикатов (формулировка)</strong></li>
-<li><strong>следствие из теоремы Гёделя о исчислении предикатов</strong></li>
+<li>
+    <span style="color:green;">
+            <strong>оценки и модели в исчислении предикатов</strong>
+    </span><br>
+    Чтобы оценить значение формулы в ИП, нужно задать кортеж $\left\langle D,E,P,R \right\rangle$, где:<br>
+    <ul>
+        <li>$D$ &mdash; предметное множество</li>
+        <li>$D$ &mdash; оценка для функциональных символов $(D^n\rightarrow D)$</li>
+        <li>$D$ &mdash; оценка для предикатов $D^n \rightarrow V$</li>
+        <li>$D$ &mdash; свободные предметные переменные</li>
+    </ul>
+</li>
+<li>
+    <span style="color:green;">
+            <strong>теорема о дедукции для И. П.</strong>
+    </span>
+    <br>
+    <ul>
+        <li>
+            $\Gamma, \alpha \vdash \beta$, в доказательстве нет применений правил для кванторов по свободным переменным из $\alpha$, то $\Gamma \vdash \alpha \rightarrow \beta$
+        </li>
+        <li>
+            $\Gamma \vdash \alpha \rightarrow \beta \implies \Gamma, \alpha \vdash \beta$
+        </li>
+    </ul>
+</li>
+<li>
+    <b>лемма</b>: $[\![\psi]\!]^{x:=[\![\theta]\!]}=[\![\psi[x:=[\![\theta]\!]]]\!]$, если $\theta$ свободна для подстановки вместо $x$
+</li>
+<li><span style="color:green;">
+            <strong>теорема о корректности для И. П.</strong>
+    </span>каждое доказуемое утв. общезначимо</li>
+<li>
+    <ul>
+        <li>Множество $\Gamma$ <b>непротиворечиво</b>, если нет $\alpha$ такого, что $\Gamma \vdash \alpha$ и $\Gamma \vdash \neg \alpha$<br></li>
+        <li>Формула <b>замкнута</b>, если она не содержит свободных переменных<br></li>
+        <li>Формула <b>бескванторна</b>, если она не содержит кванторов<br></li>
+        <li><strong>полное непротиворечивое множество (бескванторных) формул &mdash;</strong> 
+            непротиворечивое множество (бескванторных) формул + св-во: $\forall \alpha: \quad \alpha \in \Gamma | \neg \alpha \in \Gamma$</li><br>
+    </ul>
+</li>
+<li><strong>модель для формулы</strong>
+    модель &mdash; $\left \langle D, E, R \right \rangle$<br>
+</li>
+<li><strong>теорема Гёделя о полноте исчисления предикатов (формулировка)</strong><br>
+    <b>лемма</b>: Для любой формулы ИП найдётся эквив. ей ф-ла с поверхностными кванторами<br>
+    <b>теорема</b>: $\Gamma$ &mdash; непротиворечивое множество формул ИП. Тогда, существует модель для $\Gamma$<br>
+</li>
+<li><strong>следствие из теоремы Гёделя о исчислении предикатов</strong>: полнота???</li>
 </ul>
 </li>
 </ul>
-
 <p><a href="https://www.mccme.ru/free-books/shen/shen-logic-part2-2.pdf">Шень, Верещагин</a>
 <a href="http://lpcs.math.msu.su/~plisko/intlog.pdf">Инт. логика</a>
 <a href="https://github.com/shd/logic2011/blob/master/conspect.pdf">Конспект 2011</a></p>
