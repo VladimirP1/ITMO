@@ -11,14 +11,14 @@ before_install:
 
 script:
     - make PREFIX="$PWD/output" -C MathAnalysis/Sem4 install
-#    - make PREFIX="$PWD/output" -C MathLogic/Colloq install
+    - make PREFIX="$PWD/output" -C MathLogic/Colloq install
     - zip -r release.zip output
 deploy:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
         file:
             - output/Integrals.pdf
-#            - output/Defs.html
+            - output/Defs.pdf
         skip_cleanup: true
         #        on:
         #  tags: true
