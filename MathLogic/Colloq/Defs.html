@@ -50,8 +50,8 @@
   </pre><br/>
   A,B,C &hellip; &mdash; <em>пропозициональные переменные</em><br/>
   X,Y,Z &hellip; &mdash; <em>метапеременные для переменных</em></li>
-<li><strong>метапеременные</strong></li>
-<li><strong>пропозициональные переменные</strong></li>
+<li><span style="color:#066600;"><strong>метапеременные</strong></span> &mdash; "Plaseholder" for variables</li>
+<li><span style="color:#066600;"><strong>пропозициональные переменные</strong></span> &mdash; символы, обозначающие высказывания</li>
 <li><span style="color:#066600;"><strong>аксиома</strong></span> &mdash; высказывание</li>
 <li><span style="color:#066600;"><strong>схема аксиом</strong></span> &mdash; шаблон для генерации аксиом</li>
 <li><span style="color:#066600;"><strong>правило Modus Ponens</strong></span> &mdash; Если доказано $\alpha$ и $\alpha \rightarrow \beta$, то считаем доказанным $\beta$</li>
@@ -68,12 +68,12 @@
 <li><strong>модель (оценка переменных)</strong></li>
 <li><span style="color:#066600;"><strong>оценка высказывания</strong></span> &mdash; Отображение: формула $\rightarrow$ множество истинностных значений</li>
 <li><span style="color:#066600;"><strong>общезначимость ($\models$)</strong></span> &mdash; истинность при любой оценке</li>
-<li><strong>выполнимость</strong></li>
-<li><strong>невыполнимость</strong></li>
-<li><strong>следование</strong></li>
+<li><span style="color:#066600;"><strong>выполнимость</strong>: существует оценка, при которой формула выполнена</span></li>
+<li><span style="color:#066600;"><strong>невыполнимость</strong>: нет такой оценки, что см выше</span></li>
+<li><span style="color:#066600;"><strong>следование</strong>: формула X <b>следует</b> из $G_1 \ldots G_n$, если в любой оценке, в которой истинны $G_1 \ldots G_n$ истинна и $X$.</span></li>
 <li><span style="color:#066600;"><strong>корректность</strong></span> &mdash; доказуемость $\implies$ общезначимость</li>
 <li><span style="color:#066600;"><strong>полнота</strong></span> &mdash; общезначимость $\implies$ доказуемость</li>
-<li><strong>противоречивость</strong></li>
+<li><span style="color:#066600;"><strong>противоречивость</strong></span> когда выводится любая формула</li>
 <li><span style="color:#066600;"><strong>формулировка теоремы о дедукции</strong></span> $\Gamma \vdash \alpha \rightarrow \beta \iff \Gamma, \alpha \vdash \beta$</li>
 </ul>
 </li>
@@ -157,7 +157,7 @@
           (ФОРМУЛА &amp;  ФОРМУЛА) |
           (ФОРМУЛА -&gt; ФОРМУЛА) |
           (!ФОРМУЛА) |
-          (∀ <span style="color:red;">предметная переменная</span>.ФОРМУЛА) |
+          (∀ <span style="color:red;">предметная переменная</span>.ФОРМУЛА) |
           (∃<span style="color:red;"> предметная переменная</span>.ФОРМУЛА) |</span>
           (<span style="color:green;">предикатный символ</span>)(<span style="color:red;">ТЕРМ</span>₀,<span style="color:red;"> ТЕРМ</span>₁, &hellip;)<br/>
   <em>Связанное</em> вхождение &mdash; вхождение в области действия квантора.
