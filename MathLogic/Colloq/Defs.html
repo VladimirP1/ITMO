@@ -180,12 +180,12 @@
   Терм θ <em>свободен для подстановки</em> в формулу ψ вместо x, если после подстановки θ вместо свободных вхождений x, θ не станет связанным.
   </pre></li>
 <li><span style="color:green;"><strong>два правила для кванторов</strong></span><br/>
+  \(\begin{rcases}{l}2. \dfrac{\psi \rightarrow \phi}{\psi \rightarrow \forall x.\phi} \\3. \dfrac{\phi \rightarrow \psi}{(\exists x.\phi) \rightarrow \psi} \end{rcases}\)
+  , где $x$ не входит свободно в $\psi$</li>
+<li><span style="color:green;"><strong>две аксиомы для кванторов</strong></span><br/>
   $\newenvironment{rcases}{\left.\begin{array}}{\end{array}\right\rbrace}$
   \(\begin{rcases}{l}11. (\forall x.\phi) \rightarrow \phi [x:=\Theta]\\12. \phi [x:=\Theta] \rightarrow \exists x.\phi\end{rcases}\)
   , где $\Theta$ свободна для подстановки вместо $x$ в $\phi$</li>
-<li><span style="color:green;"><strong>две аксиомы для кванторов</strong></span><br/>
-  \(\begin{rcases}{l}2. \dfrac{\psi \rightarrow \phi}{\psi \rightarrow \forall x.\phi} \\3. \dfrac{\phi \rightarrow \psi}{(\exists x.\phi) \rightarrow \psi} \end{rcases}\)
-  , где $x$ не входит свободно в $\psi$</li>
 <li>
     <span style="color:green;">
             <strong>оценки и модели в исчислении предикатов</strong>
@@ -234,7 +234,7 @@
     <b>лемма</b>: Для любой формулы ИП найдётся эквив. ей ф-ла с поверхностными кванторами<br>
     <b>теорема</b>: $\Gamma$ &mdash; непротиворечивое множество формул ИП. Тогда, существует модель для $\Gamma$<br>
 </li>
-<li><strong>следствие из теоремы Гёделя о исчислении предикатов</strong>: полнота???</li>
+<li><strong>следствие из теоремы Гёделя о исчислении предикатов</strong>: если формула общезначима, то она выводима</li>
 </ul>
 </li>
 </ul>
