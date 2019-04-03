@@ -146,11 +146,21 @@
         <p>Пусть, $\Omega$ &mdash; область, имеющая кусочно-гладкую границу $\partial \Omega$, $\overline n_0$ &mdash; внешняя нормаль, отнормированная к 1, поле $\overline a (M)$ непрерывно дифференцируемо на $\Omega$. Тогда:<br>
         $\int\int_{\partial \Omega} \overline a \cdot \overline n_0 ds = \int \int \int_\Omega div (\overline a) dx dy dz$</p>
         <h3>Формула Стокса</h3>
-        <p>TODO</p>
+        <p>
+            $\gamma$ &mdash; замкнутый контур. Тогда: <br>
+            $\int_\gamma Pdx + Qdy + Rdz = \int \int_D (rot \overline F, \overline n_0) dS$<br>
+            где $D$ область с границей $\gamma$
+        </p>
         <h3>Поле потенциальное</h3>
-        <p>TODO</p>
+        <p>Если нашли $u$ такое, что $\overline F = grad u$, то $u$ &mdash; потенциал</p>
+        <p>
+            Как искать?<br>
+            $u(x,y,z) = \int_{M_0}^{M(x,y,z)} \overline F d\overline r$, который не зависит от пути
+        </p>
         <h3>Поле соленоидальное</h3>
         <p>
+            Что это? Поле $\overline F$ такое, что для него существует векторный потенциал $\overline W: \quad rot \overline W = \overline F$
+            Когда существует? $div F = 0$ <br>
             Как искать?<br>
             $A = (P,Q,R)$<br>
             $H = (H_x,H_y,H_z)$ <br>
@@ -170,8 +180,12 @@
             $R = z(y^2-x^2) = (H_y)'_x + \phi'_x(x,y) - (H_x)'_y - \psi'_y(x,y) = zy^2-zx^2 + \phi'_x(x,y) - \psi'_y(x,y)$<br>
             Нам очень повезло: $\psi = 0, \phi = 0$ подходит. Тогда, $H=(zyx^2-\dfrac{z^3y}3,zxy^2-\dfrac{xz^3}3,0)$<br>
             Проверим: найдем $rot H$<br>
-            <img src="rot_wolfram.png" width="600px"></img><br>
+            <img src="rot_wolfram.png" width="575px"></img><br>
             вроде совпал.
+        </p>
+        <p>
+            Ещё пример:<br>
+            <img src="rot_wolfram2.png" width="542px"></img><br>
         </p>
         <h2>TODO:</h2>
         <ul>
