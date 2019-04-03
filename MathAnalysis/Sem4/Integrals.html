@@ -150,7 +150,29 @@
         <h3>Поле потенциальное</h3>
         <p>TODO</p>
         <h3>Поле соленоидальное</h3>
-        <p>TODO</p>
+        <p>
+            Как искать?<br>
+            $A = (P,Q,R)$<br>
+            $H = (H_x,H_y,H_z)$ <br>
+            $H_x = \int Qdz + \psi(x,y)$<br>
+            $H_y = - \int Pdz + \phi(x,y)$<br>
+            $H_z = 0$<br>
+            $(H_y)'_x - (H_x)'_y = R$<br><br>
+            Пример:<br>
+            $P=x(z^2-y^2) \\ Q=y(x^2-z^2) \\ R=z(y^2-x^2)$<br>
+            По формулам:<br>
+            $H_x = \int y(x^2 - z^2) dz + \psi(x,y) = zyx^2 - \dfrac{z^3y}3 + \psi(x,y)$<br>
+            $H_y = - \int x(z^2 - y^2) dz + \phi(x,y) = - (\dfrac{z^3x}3 - zxy^2) + \phi(x,y)$<br>
+            Берём производные:<br>
+            $(H_y)'_x = -\dfrac{z^3}3 + zy^2 + \phi'_x(x,y)$<br>
+            $(H_x)'_y = zx^2 - \dfrac{z^3}3 + \psi'_y(x,y)$<br>
+            Пытаемся найти $\psi$ и $\phi$:<br>
+            $R = z(y^2-x^2) = (H_y)'_x + \phi'_x(x,y) - (H_x)'_y - \psi'_y(x,y) = zy^2-zx^2 + \phi'_x(x,y) - \psi'_y(x,y)$<br>
+            Нам очень повезло: $\psi = 0, \phi = 0$ подходит. Тогда, $H=(zyx^2-\dfrac{z^3y}3,zxy^2-\dfrac{xz^3}3,0)$<br>
+            Проверим: найдем $rot H$<br>
+            <img src="rot_wolfram.png" width="600px"></img><br>
+            вроде совпал.
+        </p>
         <h2>TODO:</h2>
         <ul>
             <li>Всё, что помечено выше</li>
