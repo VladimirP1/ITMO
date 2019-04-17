@@ -12,13 +12,15 @@ before_install:
 script:
     - make PREFIX="$PWD/output" -C MathAnalysis/Sem4 install
     - make PREFIX="$PWD/output" -C MathLogic/Colloq install
-    - zip -r release.zip output
+    - make PREFIX="$PWD/output" -C DiscreteMaths/Lab
+    - find -name \*.bin output | xargs zip -r release.zip
 deploy:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
         file:
             - output/Integrals.pdf
             - output/Defs.pdf
+            - release.zip
         skip_cleanup: true
         #        on:
         #  tags: true
