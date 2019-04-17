@@ -5,6 +5,6 @@ all: bin
 bin: $(BINARIES)
 
 %.bin: %.cpp
-	g++ -o $@ $<
+	g++ -std=c++11 -o $@ $<
 
 .PHONY: all bin 
