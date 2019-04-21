@@ -1,0 +1,28 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="photo"
+                type="com.gitlab.vladimirp1.rxjavaexperiments.Photo" />
+        <variable
+                name="onclicked"
+                type="com.gitlab.vladimirp1.rxjavaexperiments.MyClickListener" />
+    </data>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view) -> onclicked.run(photo)}">
+        <ImageView
+                android:id="@+id/previewImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@mipmap/ic_launcher_round"/>
+        <TextView
+                android:text="@{photo.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+        />
+    </LinearLayout>
+</layout>
