@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 1.0.0 (Vladimir Pinchuk)
+Main-Class: ru.ifmo.rain.vladimirp1.reflection.Implementor
+Class-Path: info.kgeorgiy.java.advanced.implementor.jar
