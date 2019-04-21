@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_likes"
+          android:title="@string/menu_likes"
+          android:icon="@android:drawable/btn_star"/>
+    <item android:id="@+id/action_feed"
+          android:title="@string/menu_feed"
+          android:icon="@android:drawable/ic_menu_help"/>
+    <item android:id="@+id/action_search"
+          android:title="@string/menu_search"
+          android:icon="@android:drawable/ic_menu_search"/>
+</menu>
