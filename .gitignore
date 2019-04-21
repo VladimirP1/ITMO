@@ -1,3 +1,4 @@
 private/
 *.swp
 .ccls-cache
+environ
