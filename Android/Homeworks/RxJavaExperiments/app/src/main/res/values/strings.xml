@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RxJavaExperiments</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="like">Like</string>
+    <string name="unlike">UnLike</string>
+    <string name="menu_likes">Likes</string>
+    <string name="menu_feed">Feed</string>
+    <string name="menu_search">Search</string>
+    <string name="search">Search</string>
+
+</resources>
