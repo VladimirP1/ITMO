@@ -1,0 +1,12 @@
+https://cmake.org/cmake/help/v3.8/command/install.html
+https://foonathan.net/blog/2016/03/03/cmake-install.html
+https://stackoverflow.com/questions/25676277/cmake-target-include-directories-prints-an-error-when-i-try-to-add-the-source
+https://cmake.org/cmake/help/v3.0/manual/cmake-generator-expressions.7.html#output-expressions
+https://cmake.org/cmake/help/v3.0/command/set.html
+https://cmake.org/cmake/help/v3.0/command/if.html
+https://stackoverflow.com/questions/22487215/cmake-function-parameter-and-return
+https://cmake.org/pipermail/cmake/2007-June/014607.html
+https://stackoverflow.com/questions/46713143/cmake-install-library-and-development-files-as-separate-components-using-public
+https://stackoverflow.com/questions/9190098/for-cmakes-install-command-what-can-the-component-argument-do
+https://cmake.org/cmake/help/v3.0/command/find_library.html
+https://cmake.org/cmake/help/v3.0/variable/CMAKE_PREFIX_PATH.html
