@@ -9,8 +9,8 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class WebCrawler implements Crawler {
-    private final int DOWNLOADERS_LIMIT = 64;
-    private final int EXTRACTORS_LIMIT = 64;
+    private final int DOWNLOADERS_LIMIT = 16;
+    private final int EXTRACTORS_LIMIT = 16;
 
     private final int perHost;
     private final Downloader downloader;
@@ -28,7 +28,7 @@ public class WebCrawler implements Crawler {
         downloaders = constrain(downloaders, 0, DOWNLOADERS_LIMIT);
         extractors = constrain(extractors, 0, EXTRACTORS_LIMIT);
 
-        this.perHost = perHost;
+        this.perHost = constrain(perHost, 0, DOWNLOADERS_LIMIT);
         this.downloader = downloader;
         this.downloaderPool = new ThreadPoolExecutor(downloaders, downloaders, 1, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
         this.extractorPool = new ThreadPoolExecutor(extractors, extractors, 1, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
@@ -45,12 +45,14 @@ public class WebCrawler implements Crawler {
     @Override
     public Result download(String url, int depth) {
         final DoneDetector d = new DoneDetector();
-        final Set<String> visited = Collections.newSetFromMap(new ConcurrentHashMap<>());
+        final Set<String> visited = Collections.synchronizedSet(new HashSet<>());
         final Map<String, Semaphore> limit = new ConcurrentHashMap<>();
-        final Set<String> downloaded = Collections.newSetFromMap(new ConcurrentHashMap<>());
+        final Set<String> downloaded = Collections.synchronizedSet(new HashSet<>());
         final Map<String, IOException> errors = new ConcurrentHashMap<>();
 
         visited.add(url);
+
+        System.err.println(url);
 
         downloaderPool.submit(() -> {
             download(url, visited, limit, downloaded, errors, depth, d);
@@ -60,6 +62,10 @@ public class WebCrawler implements Crawler {
             d.waitCompleted();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        }
+
+        for (String link : downloaded) {
+            System.out.println("In set: " + link);
         }
 
         return new Result(new ArrayList<>(downloaded), errors);
@@ -128,11 +134,16 @@ public class WebCrawler implements Crawler {
             doc = downloader.download(url);
 
             downloaded.add(url);
+
+            System.out.println("Added " + url);
+
         } catch (IOException e) {
+            System.out.println("Fail " + url);
             errors.put(url, e);
             det.refDec();
             return;
         } catch (Throwable e) {
+
             det.refDec();
             throw e;
         } finally {
@@ -212,9 +223,8 @@ public class WebCrawler implements Crawler {
         return value;
     }
 
-    private static class DoneDetector {
+    /*private static class DoneDetector {
         private final AtomicLong refs = new AtomicLong(1);
-
 
         void refInc() {
             refs.incrementAndGet();
@@ -235,8 +245,24 @@ public class WebCrawler implements Crawler {
                 }
             }
         }
+    }*/
+
+    private static class DoneDetector {
+        private final Phaser p = new Phaser(1);
+
+        void refInc() {
+            p.register();
+        }
+
+        void refDec() {
+            p.arrive();
+        }
+
+        void waitCompleted() throws InterruptedException {
+            p.awaitAdvance(0);
+        }
     }
 
-    ;
+
 }
 
