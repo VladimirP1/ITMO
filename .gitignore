@@ -2,3 +2,5 @@ private/
 *.swp
 .ccls-cache
 environ
+build-*
+CMakeLists.txt.user
