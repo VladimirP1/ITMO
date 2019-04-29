@@ -46,7 +46,6 @@ public class WebCrawler implements Crawler {
     public Result download(String url, int depth) {
         final DoneDetector d = new DoneDetector();
         final Set<String> visited = Collections.synchronizedSet(new HashSet<>());
-        final Map<String, Semaphore> limit = new ConcurrentHashMap<>();
         final Set<String> downloaded = Collections.synchronizedSet(new HashSet<>());
         final Map<String, IOException> errors = new ConcurrentHashMap<>();
 
@@ -55,7 +54,7 @@ public class WebCrawler implements Crawler {
         System.err.println(url);
 
         downloaderPool.submit(() -> {
-            download(url, visited, limit, downloaded, errors, depth, d);
+            download(url, visited, downloaded, errors, depth, d);
         });
 
         try {
@@ -64,17 +63,12 @@ public class WebCrawler implements Crawler {
             Thread.currentThread().interrupt();
         }
 
-        for (String link : downloaded) {
-            System.out.println("In set: " + link);
-        }
-
         return new Result(new ArrayList<>(downloaded), errors);
     }
 
     private void extract(
             String url,
             Set<String> visited,
-            Map<String, Semaphore> limit,
             Set<String> downloaded,
             Map<String, IOException> errors,
             int depth,
@@ -97,7 +91,7 @@ public class WebCrawler implements Crawler {
             if (visited.add(link)) {
                 det.refInc();
                 downloaderPool.submit(() -> {
-                    download(link, visited, limit, downloaded, errors, depth - 1, det);
+                    download(link, visited, downloaded, errors, depth - 1, det);
                 });
             }
         }
@@ -116,29 +110,20 @@ public class WebCrawler implements Crawler {
 
     private void download(String url,
                           Set<String> visited,
-                          Map<String, Semaphore> limit,
                           Set<String> downloaded,
                           Map<String, IOException> errors,
                           int depth,
                           DoneDetector det
     ) {
         final Document doc;
-        Semaphore sem = null;
         try {
             final String host = URLUtils.getHost(url);
-            limit.putIfAbsent(host, new Semaphore(perHost));
-            sem = limit.get(host);
-
-            sem.acquireUninterruptibly();
 
             doc = downloader.download(url);
 
             downloaded.add(url);
 
-            System.out.println("Added " + url);
-
         } catch (IOException e) {
-            System.out.println("Fail " + url);
             errors.put(url, e);
             det.refDec();
             return;
@@ -146,10 +131,6 @@ public class WebCrawler implements Crawler {
 
             det.refDec();
             throw e;
-        } finally {
-            if (sem != null) {
-                sem.release();
-            }
         }
 
         if (depth == 1) {
@@ -158,7 +139,8 @@ public class WebCrawler implements Crawler {
         }
 
         det.refInc();
-        extractorPool.submit(() -> extract(url, visited, limit, downloaded, errors, depth, det, doc));
+
+        extractorPool.submit(() -> extract(url, visited, downloaded, errors, depth, det, doc));
 
         det.refDec();
     }
@@ -223,7 +205,7 @@ public class WebCrawler implements Crawler {
         return value;
     }
 
-    /*private static class DoneDetector {
+    private static class DoneDetector {
         private final AtomicLong refs = new AtomicLong(1);
 
         void refInc() {
@@ -245,9 +227,9 @@ public class WebCrawler implements Crawler {
                 }
             }
         }
-    }*/
+    }
 
-    private static class DoneDetector {
+    /*private static class DoneDetector {
         private final Phaser p = new Phaser(1);
 
         void refInc() {
@@ -261,7 +243,7 @@ public class WebCrawler implements Crawler {
         void waitCompleted() throws InterruptedException {
             p.awaitAdvance(0);
         }
-    }
+    }*/
 
 
 }
