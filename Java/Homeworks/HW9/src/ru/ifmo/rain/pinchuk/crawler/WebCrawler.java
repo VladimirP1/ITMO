@@ -45,8 +45,8 @@ public class WebCrawler implements Crawler {
     @Override
     public Result download(String url, int depth) {
         final DoneDetector d = new DoneDetector();
-        final Set<String> visited = Collections.synchronizedSet(new HashSet<>());
-        final Set<String> downloaded = Collections.synchronizedSet(new HashSet<>());
+        final Set<String> visited = new ConcurrentSkipListSet<>(); //Collections.synchronizedSet(new HashSet<>());
+        final Set<String> downloaded = new ConcurrentSkipListSet<>(); // Collections.synchronizedSet(new HashSet<>());
         final Map<String, IOException> errors = new ConcurrentHashMap<>();
 
         visited.add(url);
