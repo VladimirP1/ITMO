@@ -1,0 +1,231 @@
+    1A
+---------------------------------------
+input: '0011'
+blank: ' '
+start state: right
+table:
+  right:
+    0: {write: ' ', R}
+    1: {L: done}
+    ' '  : {L: done}
+
+  done:
+  bad:
+
+1B
+---------------------------------------
+input: '200012120101'
+blank: ' '
+start state: right
+table:
+  right:
+    0: {R: shiftEPS, write: ' '}
+    [1,2]: {R}
+    ' ': {L: done}
+  shiftEPS:
+    [0,1,2]: {R}
+    ' ': {L: shiftRE}
+  shiftRE:
+    0: { L: shift0, write: ' ' }
+    1: { L: shift1, write: ' ' }
+    2: { L: shift2, write: ' ' }
+    # no need L hereshift
+    ' ': {L: sr, write: ' '}
+  shift0:
+    0: {L: shift0, write: 0}
+    1: {L: shift1, write: 0}
+    2: {L: shift2, write: 0}
+    # no need L here
+    ' ': {L: sr, write: 0 }
+  shift1:
+    0: {L: shift0, write: 1}
+    1: {L: shift1, write: 1}
+    2: {L: shift2, write: 1}
+    # no need L here
+    ' ': {L: sr, write: 1 }
+  shift2:
+    0: {L: shift0, write: 2}
+    1: {L: shift1, write: 2}
+    2: {L: shift2, write: 2}
+    # no need L here
+    ' ': { L: sr, write: 2 }
+  sr:
+    [0,1,2,' ']: {R: right}
+
+  done:
+  
+1C
+---------------------------------------
+input: '10100'
+blank: ' '
+start state: start0
+table:
+  start0:
+    [0,1,' ']: {L: addHash}
+    
+  addHash:
+    [0,1,' ']: {R: addUnd, write: '#'}
+    
+  addUnd:
+    [0,1]: {R}
+    ' ': {L: returnToStart, write: '_'}
+    
+  returnToStart:
+    [0,1]: {L}
+    '#': {R: start}
+    
+  start:
+    0: {L : bring0left, write: ' '}
+    1: {L : bring1left, write: ' '}
+    ['#', ' '] : {R}
+    '_': {R: cleanup}
+    
+  bring0left:
+    [0,1,' ']: {L}
+    '#': {L : bring0left1}
+  bring0left1:
+    [0,1,'#']: {L}
+    ' ': {R: return , write: 0}
+    
+  bring1left:
+    [0,1,' ']: {L}
+    '#': {L : bring1left1}
+    
+  bring1left1:
+    [0,1,'#']: {L}
+    ' ': {R: return, write: 1}
+    
+  return:
+    [0,1,' ']: {R}
+    '#': {R: start}
+    
+  cleanup:
+    ['#','_',' ']: {L, write: ' '}
+    [0,1]: {R: done}
+  done:
+  100               
+2A
+---------------------------------------
+input: '001000'
+blank: ' '
+start state: start
+table:
+  start:
+    '0': {R}
+    '1': {R: accept}
+    ' ': {R: reject}
+  accept:
+  reject:
+
+2B
+---------------------------------------
+input: '0010003'
+blank: ' '
+start state: start
+table:
+  start:
+    [0,1,2,3]: {R}
+    ' ': {L: test}
+  test:
+    [0, 2]: {R: accept}
+    [' ', '1', '3']: {R: reject}
+  accept:
+  reject:
+  
+2C
+---------------------------------------
+input: '12'
+blank: ' '
+start state: start0
+table:
+  start0:
+    [0,3,6,9]: {R: start0}
+    [1,4,7]:   {R: start1}
+    [2,5,8]:   {R: start2}
+    ' ':       {R: accept}
+  start1:
+    [0,3,6,9]: {R: start1}
+    [1,4,7]:   {R: start2}
+    [2,5,8]:   {R: start0}
+    ' ':       {R: reject}
+  start2:
+    [0,3,6,9]: {R: start2}
+    [1,4,7]:   {R: start0}
+    [2,5,8]:   {R: start1}
+    ' ':       {R: reject}
+    
+  accept:
+    
+  reject:
+
+
+2D
+---------------------------------------
+input: '({}({}))'
+blank: ' '
+start state: start
+table:
+  start:
+    ['(',')',' ']: {L: markMem}
+    
+  markMem:
+    ' ': {R: start1, write: '$'}
+  
+  # Push '('
+  pushO:
+    ['(',')','{','}','$']: {L}
+    ' ': {R: retloopO, write: '('}
+  retloopO:
+    ['(', ')','{','}', '$']: {R}
+    '#': {R: start1, write: '('}
+  
+  # Pop ')' 
+  popO:
+    ['(',')','{','}','$']: {L}
+    ' ': {R: checkO}
+  checkO:
+    '(': {R: retloopO_chk, write: ' '}
+    [')','{','}','$']: {R: reject}
+    
+  retloopO_chk:
+    ['(', ')','{','}', '$']: {R}
+    '#': {R: start1, write: ')'}
+    
+  # Push '{'
+  pushF:
+    ['(',')','{','}','$']: {L}
+    ' ': {R: retloopF, write: '{'}
+  retloopF:
+    ['(', ')','{','}', '$']: {R}
+    '#': {R: start1, write: '{'}
+  
+  # Pop '}' 
+  popF:
+    ['(',')','{','}','$']: {L}
+    ' ': {R: checkF}
+  checkF:
+    '{': {R: retloopF_chk, write: ' '}
+    ['(',')','}','$']: {R: reject}
+    
+  retloopF_chk:
+    ['(', ')','{','}', '$']: {R}
+    '#': {R: start1, write: '}'}
+    
+  start1:
+    '(': {L: pushO, write: '#'}
+    ')': {L: popO, write: '#'}
+    '{': {L: pushF, write: '#'}
+    '}': {L: popF, write: '#'}
+    ' ': {L: terminate}
+  
+  terminate:
+    ['(',')','{','}',' ']: {L}
+    '$': {L: terminate2}
+  terminate2:
+    ' ': {L: accept}
+    ['(',')','{','}']: {L: reject}
+    
+  reject:
+  accept:
+  
+
