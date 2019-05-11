@@ -1,0 +1,58 @@
+start: right
+accept: ac
+reject: rj
+blank: _
+ 
+right 0 -> right 0 >
+right 1 -> right 1 >
+right + -> right + >
+right _ -> get _ <
+ 
+get 0 -> findd0 r <
+get 1 -> findd1 r <
+get + -> replace _ <
+ 
+findd0 0 -> findd0 0 <
+findd0 1 -> findd0 1 <
+findd0 + -> add0 + <
+findd0 I -> add0 I <
+findd0 O -> add0 O <
+ 
+add0 0 -> ret O >
+add0 _ -> ret O >
+add0 1 -> ret I >
+add0 O -> add0 O <
+add0 I -> add0 I <
+ 
+findd1 0 -> findd1 0 <
+findd1 1 -> findd1 1 <
+findd1 + -> add1 + <
+findd1 I -> add1 I <
+findd1 O -> add1 O <
+ 
+add1 0 -> ret I >
+add1 _ -> ret I >
+add1 1 -> carry O <
+add1 O -> add1 O <
+add1 I -> add1 I <
+ 
+carry 1 -> carry 0 <
+carry 0 -> ret 1 >
+carry _ -> ret 1 >
+ 
+ret O -> ret O >
+ret I -> ret I >
+ret 0 -> ret 0 >
+ret 1 -> ret 1 >
+ret + -> ret + >
+ret r -> get _ <
+ 
+replace 0 -> replace 0 <
+replace 1 -> replace 1 <
+replace O -> replace 0 <
+replace I -> replace 1 <
+replace _ -> leadingz _ >
+ 
+leadingz 0 -> leadingz _ >
+leadingz 1 -> ac 1 ^
+leadingz _ -> ac 0 ^

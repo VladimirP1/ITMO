@@ -1,0 +1,61 @@
+start: insx
+accept: ac
+reject: rj
+blank: _
+ 
+insx 0 -> insx2 0 <
+insx 1 -> insx2 1 <
+insx2 _ -> iright x >
+ 
+iright 0 -> iright 0 >
+iright 1 -> iright 1 >
+iright < -> iright > >
+iright _ -> get _ <
+ 
+right 0 -> right 0 >
+right 1 -> right 1 >
+right _ -> get _ <
+ 
+get 0 -> cmp0 _ <
+get 1 -> cmp1 _ <
+get < -> cmp0 < ^ 
+get > -> cmp0 > ^ 
+ 
+cmp0 0 -> cmp0 0 <
+cmp0 1 -> cmp0 1 <
+cmp0 < -> cmp0a < <
+cmp0 > -> cmp0a > <
+ 
+cmp0a _ -> cmp0a _ <
+cmp0a 0 -> eql _ >
+cmp0a 1 -> grt _ >
+cmp0a x -> chk x >
+ 
+cmp1 0 -> cmp1 0 <
+cmp1 1 -> cmp1 1 <
+cmp1 < -> cmp1a < <
+cmp1 > -> cmp1a > <
+ 
+cmp1a _ -> cmp1a _ <
+cmp1a 0 -> les _ >
+cmp1a 1 -> eql _ >
+cmp1a x -> les x >
+ 
+grt _ -> grt _ >
+grt > -> right > >
+grt < -> right > >
+ 
+les _ -> les _ >
+les > -> right < >
+les < -> right < >
+ 
+eql _ -> eql _ >
+eql > -> right > >
+eql < -> right < >
+ 
+chk _ -> chk _ >
+chk < -> ac _ ^
+chk > -> crj _ >
+ 
+crj _ -> rj _ ^
+crj 1 -> ac _ ^
