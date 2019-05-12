@@ -58,7 +58,7 @@ public class BlockingHelloServerImpl implements HelloServer {
     }
 
     private void listen(int port) {
-        byte buf[] = new byte[1024];
+        byte[] buf = new byte[1024];
 
         try (DatagramSocket socket = new DatagramSocket(port)) {
             this.socket = socket;

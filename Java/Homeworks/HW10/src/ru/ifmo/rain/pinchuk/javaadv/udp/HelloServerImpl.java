@@ -175,6 +175,7 @@ public class HelloServerImpl implements HelloServer {
     public void close() {
         try {
             selector.close();
+            channel.close();
         } catch(IOException e) {}
 
         worker.shutdownNow();

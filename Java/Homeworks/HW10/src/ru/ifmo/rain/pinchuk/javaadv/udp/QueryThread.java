@@ -10,7 +10,7 @@ import java.nio.channels.Selector;
 import java.nio.charset.StandardCharsets;
 
 public class QueryThread implements Comparable<QueryThread> {
-    private int id;
+    private final int id;
     private InetSocketAddress host;
     private long timeRegistered;
     private SelectionKey key;
@@ -22,7 +22,7 @@ public class QueryThread implements Comparable<QueryThread> {
 
     /**
      * Gets the attachment - the object, which has been associated with this thread by {@link #setAttachment(Object)}
-     * @return
+     * @return the attachment value
      */
 
     public Object getAttachment() {

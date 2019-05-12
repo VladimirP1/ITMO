@@ -14,7 +14,7 @@ public class HelloClientImpl implements HelloClient {
     private void maybeNewJob(QueryThread thread, boolean next) {
         ThreadManager m = (ThreadManager) thread.getAttachment();
 
-        if(next) {
+        if (next) {
             m.nextQuery();
         }
 
@@ -32,6 +32,7 @@ public class HelloClientImpl implements HelloClient {
 
     /**
      * Program's entry point, for standalone usage
+     *
      * @param args program's arguments
      */
 
@@ -54,7 +55,7 @@ public class HelloClientImpl implements HelloClient {
             port = Integer.parseInt(args[1]);
             threads = Integer.parseInt(args[3]);
             queries = Integer.parseInt(args[4]);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Bad number format");
             return;
         }
@@ -64,9 +65,10 @@ public class HelloClientImpl implements HelloClient {
 
     /**
      * Program's entry point
-     * @param host The host to send to
-     * @param port The destination port
-     * @param prefix Prefix of query strings
+     *
+     * @param host    The host to send to
+     * @param port    The destination port
+     * @param prefix  Prefix of query strings
      * @param threads The number of threads to use
      * @param queries Total number of requests for each thread
      */
@@ -91,37 +93,41 @@ public class HelloClientImpl implements HelloClient {
             workingThreads.add(thread);
         }
 
-        try {
+
+        while (!workingThreads.isEmpty()) {
             while (!workingThreads.isEmpty()) {
-                while (!workingThreads.isEmpty()) {
-                    QueryThread thread = workingThreads.iterator().next();
-                    if (!thread.getTlExceeded()) {
-                        break;
-                    }
-
-                    maybeNewJob(thread, false);
-
-                    //System.out.println("TL exceeded");
+                QueryThread thread = workingThreads.iterator().next();
+                if (!thread.getTlExceeded()) {
+                    break;
                 }
 
+                maybeNewJob(thread, false);
+
+                //System.out.println("TL exceeded");
+            }
+
+            try {
                 selector.select(50);
+            } catch (IOException e) {
+                System.out.println("Select failes");
+                e.printStackTrace();
+                break;
+            }
 
-                for (final Iterator<SelectionKey> i = selector.selectedKeys().iterator(); i.hasNext(); ) {
-                    final SelectionKey key = i.next();
-                    try {
-                        QueryThread thread = (QueryThread) key.attachment();
-                        thread.event();
+            for (final Iterator<SelectionKey> i = selector.selectedKeys().iterator(); i.hasNext(); ) {
+                final SelectionKey key = i.next();
+                try {
+                    QueryThread thread = (QueryThread) key.attachment();
+                    thread.event();
 
-                        if (thread.isIdle()) {
-                            maybeNewJob(thread, true);
-                        }
-                    } finally {
-                        i.remove();
+                    if (thread.isIdle()) {
+                        maybeNewJob(thread, true);
                     }
+                } finally {
+                    i.remove();
                 }
             }
-        } catch (IOException e) {
-
         }
+
     }
 }
