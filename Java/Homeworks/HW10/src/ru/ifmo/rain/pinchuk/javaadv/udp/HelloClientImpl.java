@@ -10,6 +10,7 @@ import java.util.*;
 
 public class HelloClientImpl implements HelloClient {
     private final Set<QueryThread> workingThreads = new TreeSet<>();
+    private final int SELECTOR_TIMEOUT_MS = 50;
 
     private void maybeNewJob(QueryThread thread, boolean next) {
         ThreadManager m = (ThreadManager) thread.getAttachment();
@@ -107,7 +108,7 @@ public class HelloClientImpl implements HelloClient {
             }
 
             try {
-                selector.select(50);
+                selector.select(SELECTOR_TIMEOUT_MS);
             } catch (IOException e) {
                 System.out.println("Select failes");
                 e.printStackTrace();

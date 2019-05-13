@@ -21,7 +21,8 @@ public class HelloServerImpl implements HelloServer {
     private DatagramChannel channel;
     private ByteBuffer recvbuf;
     private SelectionKey key;
-    private final int maxInQueue = 128;
+    private final int BUFFER_SIZE = 1204;
+    private final int MAX_IN_QUEUE = 128;
     private final Queue<SendTask> sendQueue = new LinkedList<>();
 
     private static class SendTask {
@@ -83,7 +84,7 @@ public class HelloServerImpl implements HelloServer {
             }
         }
 
-        if ((key.readyOps() & SelectionKey.OP_READ) != 0 && sendQueue.size() < maxInQueue) {
+        if ((key.readyOps() & SelectionKey.OP_READ) != 0 && sendQueue.size() < MAX_IN_QUEUE) {
             try {
                 recvbuf.clear();
                 SocketAddress addr = chan.receive(recvbuf);
@@ -99,7 +100,7 @@ public class HelloServerImpl implements HelloServer {
 
     private boolean mainLoop() {
         final int interested =
-                (sendQueue.size() >= maxInQueue ? 0 : SelectionKey.OP_READ) |
+                (sendQueue.size() >= MAX_IN_QUEUE ? 0 : SelectionKey.OP_READ) |
                         (sendQueue.size() == 0 ? 0 : SelectionKey.OP_WRITE);
         key.interestOps(interested);
 
@@ -121,7 +122,7 @@ public class HelloServerImpl implements HelloServer {
     }
 
     private void run(int port, int threads) {
-        recvbuf = ByteBuffer.allocate(1024);
+        recvbuf = ByteBuffer.allocate(BUFFER_SIZE);
 
         try (Selector selector = Selector.open();
              DatagramChannel channel = DatagramChannel.open()) {

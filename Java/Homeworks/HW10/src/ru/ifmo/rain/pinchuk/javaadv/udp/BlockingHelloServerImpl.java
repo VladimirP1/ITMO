@@ -14,6 +14,7 @@ public class BlockingHelloServerImpl implements HelloServer {
     private ExecutorService listener;
     private ExecutorService tellers;
 
+    private final int BUFFER_SIZE = 1024;
     /**
      * Program's entry point, for standalone usage
      * @param args program's arguments
@@ -58,7 +59,7 @@ public class BlockingHelloServerImpl implements HelloServer {
     }
 
     private void listen(int port) {
-        byte[] buf = new byte[1024];
+        byte[] buf = new byte[BUFFER_SIZE];
 
         try (DatagramSocket socket = new DatagramSocket(port)) {
             this.socket = socket;

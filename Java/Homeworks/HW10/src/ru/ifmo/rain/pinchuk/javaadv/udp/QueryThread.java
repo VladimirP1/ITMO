@@ -19,6 +19,7 @@ public class QueryThread implements Comparable<QueryThread> {
     private ByteBuffer buf;
     private Object attachment;
     private State state = State.INIT;
+    private final int TIME_LIMIT_MS = 1000;
 
     /**
      * Gets the attachment - the object, which has been associated with this thread by {@link #setAttachment(Object)}
@@ -123,6 +124,7 @@ public class QueryThread implements Comparable<QueryThread> {
                             int len = buf.position();
                             buf.flip();
                             String response = new String(buf.array(), 0, len);
+
                             setState(State.DONE);
 
                             System.out.println(request + " | " + response);
@@ -161,7 +163,7 @@ public class QueryThread implements Comparable<QueryThread> {
      */
 
     public boolean getTlExceeded() {
-        return 1000 + timeRegistered < System.currentTimeMillis();
+        return TIME_LIMIT_MS + timeRegistered < System.currentTimeMillis();
     }
 
     /**
