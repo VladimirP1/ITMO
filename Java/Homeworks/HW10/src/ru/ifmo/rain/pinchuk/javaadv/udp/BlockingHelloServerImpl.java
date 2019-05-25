@@ -59,10 +59,12 @@ public class BlockingHelloServerImpl implements HelloServer {
     }
 
     private void listen(int port) {
-        byte[] buf = new byte[BUFFER_SIZE];
+
 
         try (DatagramSocket socket = new DatagramSocket(port)) {
             this.socket = socket;
+
+            byte[] buf = new byte[socket.getReceiveBufferSize()];
 
             synchronized (this) {
                 this.notifyAll();
@@ -79,7 +81,7 @@ public class BlockingHelloServerImpl implements HelloServer {
                     System.out.println("Timeout");
                     continue;
                 }
-                String response = new String(packet.getData(), 0, packet.getLength());
+                String response = new String(buf, 0, packet.getLength(), StandardCharsets.UTF_8);
 
                 tellers.submit(() -> send("Hello, " + response,
                         new InetSocketAddress(packet.getAddress(), packet.getPort())));

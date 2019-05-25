@@ -58,7 +58,7 @@ public class QueryThread implements Comparable<QueryThread> {
             channel.configureBlocking(false);
             key = channel.register(selector, 0, this);
 
-            buf = ByteBuffer.allocate(1024);
+            buf = ByteBuffer.allocate(channel.socket().getReceiveBufferSize());
         } catch (IOException e) {
             System.out.println("Cannot create query 'thread'");
             e.printStackTrace();
@@ -123,7 +123,7 @@ public class QueryThread implements Comparable<QueryThread> {
                         if (addr != null) {
                             int len = buf.position();
                             buf.flip();
-                            String response = new String(buf.array(), 0, len);
+                            String response = new String(buf.array(), 0, len, StandardCharsets.UTF_8);
 
                             setState(State.DONE);
 

@@ -110,7 +110,7 @@ public class HelloClientImpl implements HelloClient {
             try {
                 selector.select(SELECTOR_TIMEOUT_MS);
             } catch (IOException e) {
-                System.out.println("Select failes");
+                System.out.println("Select failed");
                 e.printStackTrace();
                 break;
             }
