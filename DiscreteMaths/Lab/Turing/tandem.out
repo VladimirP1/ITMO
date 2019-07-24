@@ -1,0 +1,58 @@
+start: goR
+accept: ac
+reject: rj
+blank: _
+ 
+goR 0 -> goR 0 >
+goR 1 -> goR 1 >
+goR I -> replR I <
+goR O -> replR O <
+goR _ -> replR _ <
+ 
+replR 0 -> goL O <
+replR 1 -> goL I <
+replR _ -> read _ ^
+replR O -> read O ^
+replR I -> read I ^
+ 
+goL 0 -> goL 0 <
+goL 1 -> goL 1 <
+goL I -> replL I >
+goL O -> replL O >
+goL _ -> replL _ >
+ 
+replL 0 -> goR O >
+replL 1 -> goR I >
+replL _ -> rj _ ^
+replL O -> rj O ^
+replL I -> rj I ^
+ 
+read O -> chkO r >
+read I -> chkI r >
+ 
+chkO O -> chkO O >
+chkO I -> chkO I >
+chkO r -> chkO r >
+chkO _ -> realcO _ <
+ 
+realcO O -> ret _ <
+realcO I -> rj I ^
+realcO _ -> rj _ ^
+ 
+chkI O -> chkI O >
+chkI I -> chkI I >
+chkI r -> chkI r >
+chkI _ -> realcI _ <
+ 
+realcI I -> ret _ <
+realcI O -> rj O ^
+realcI _ -> rj _ ^
+ 
+ret O -> ret O <
+ret I -> ret I <
+ret r -> ret2 r <
+ 
+ret2 r -> ret2 r <
+ret2 O -> read O ^
+ret2 I -> read I ^
+ret2 _ -> ac _ ^

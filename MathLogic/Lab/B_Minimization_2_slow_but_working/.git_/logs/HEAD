@@ -1,0 +1,24 @@
+0000000000000000000000000000000000000000 40e75952568e47c46a639c17047526e1f7903254 Ваше Имя <you@example.com> 1552317289 +0300	commit (initial): Initial
+40e75952568e47c46a639c17047526e1f7903254 ac1b073800148f23df30653cd8d55e5b587c0e55 Vladimir <vladimir.pinchuk01@gmail.com> 1552378078 +0300	commit: OK
+ac1b073800148f23df30653cd8d55e5b587c0e55 ae22d319615659280211d5ce9ae333fa8e3d8c31 Vladimir <vladimir.pinchuk01@gmail.com> 1552383113 +0300	commit: TL22
+ae22d319615659280211d5ce9ae333fa8e3d8c31 48cb8245ec2c5d036550225ccf21ec9d8e397db4 Vladimir <vladimir.pinchuk01@gmail.com> 1552384082 +0300	commit: TL30
+48cb8245ec2c5d036550225ccf21ec9d8e397db4 ac1b073800148f23df30653cd8d55e5b587c0e55 Vladimir <vladimir.pinchuk01@gmail.com> 1552384186 +0300	checkout: moving from master to ac1b073800148f23df30653cd8d55e5b587c0e55
+ac1b073800148f23df30653cd8d55e5b587c0e55 48cb8245ec2c5d036550225ccf21ec9d8e397db4 Vladimir <vladimir.pinchuk01@gmail.com> 1552384390 +0300	checkout: moving from ac1b073800148f23df30653cd8d55e5b587c0e55 to 48cb8245ec2c5d036550225ccf21ec9d8e397db4
+48cb8245ec2c5d036550225ccf21ec9d8e397db4 d3aaa1661e30c37e9a5e7725e3e35165920ab34e Vladimir <vladimir.pinchuk01@gmail.com> 1552408588 +0300	commit (amend): WA30
+d3aaa1661e30c37e9a5e7725e3e35165920ab34e 48cb8245ec2c5d036550225ccf21ec9d8e397db4 Vladimir <vladimir.pinchuk01@gmail.com> 1552408625 +0300	checkout: moving from d3aaa1661e30c37e9a5e7725e3e35165920ab34e to master
+48cb8245ec2c5d036550225ccf21ec9d8e397db4 d3aaa1661e30c37e9a5e7725e3e35165920ab34e Vladimir <vladimir.pinchuk01@gmail.com> 1552408659 +0300	checkout: moving from master to master2
+d3aaa1661e30c37e9a5e7725e3e35165920ab34e d3aaa1661e30c37e9a5e7725e3e35165920ab34e Vladimir <vladimir.pinchuk01@gmail.com> 1552408667 +0300	reset: moving to HEAD
+d3aaa1661e30c37e9a5e7725e3e35165920ab34e 48cb8245ec2c5d036550225ccf21ec9d8e397db4 Vladimir <vladimir.pinchuk01@gmail.com> 1552408683 +0300	checkout: moving from master2 to master
+48cb8245ec2c5d036550225ccf21ec9d8e397db4 48cb8245ec2c5d036550225ccf21ec9d8e397db4 Vladimir <vladimir.pinchuk01@gmail.com> 1552408688 +0300	reset: moving to HEAD
+48cb8245ec2c5d036550225ccf21ec9d8e397db4 068051afe100a8f37ab74be718ca08bde5d40ed5 Vladimir <vladimir.pinchuk01@gmail.com> 1552408710 +0300	commit (amend): WA30
+068051afe100a8f37ab74be718ca08bde5d40ed5 790a9fc0cd4b53b23beb57f918e02592de861c0c Vladimir <vladimir.pinchuk01@gmail.com> 1552408736 +0300	commit: WA30
+790a9fc0cd4b53b23beb57f918e02592de861c0c 790a9fc0cd4b53b23beb57f918e02592de861c0c Vladimir <vladimir.pinchuk01@gmail.com> 1552408736 +0300	commit: WA30
+790a9fc0cd4b53b23beb57f918e02592de861c0c 790a9fc0cd4b53b23beb57f918e02592de861c0c Vladimir <vladimir.pinchuk01@gmail.com> 1552409259 +0300	reset: moving to HEAD
+790a9fc0cd4b53b23beb57f918e02592de861c0c 790a9fc0cd4b53b23beb57f918e02592de861c0c Vladimir <vladimir.pinchuk01@gmail.com> 1552409341 +0300	reset: moving to HEAD
+790a9fc0cd4b53b23beb57f918e02592de861c0c ed4bab686e8945daa516c6c949412e62a8471f60 Vladimir <vladimir.pinchuk01@gmail.com> 1552409370 +0300	commit: Remove unneded deps.tar.xz
+ed4bab686e8945daa516c6c949412e62a8471f60 ebbc20e21f0c9c11d19d97e64820e1e678d9525d Vladimir <vladimir.pinchuk01@gmail.com> 1552409450 +0300	commit: Remove any leftovers of bundled libraries
+ebbc20e21f0c9c11d19d97e64820e1e678d9525d c37ce1144ca32d56b9757dcc02bea9eb978bc133 Vladimir <vladimir.pinchuk01@gmail.com> 1552422579 +0300	commit: Vastly reduce memory usage by converting to tail recursion
+c37ce1144ca32d56b9757dcc02bea9eb978bc133 c37ce1144ca32d56b9757dcc02bea9eb978bc133 Vladimir <vladimir.pinchuk01@gmail.com> 1552422724 +0300	reset: moving to HEAD
+c37ce1144ca32d56b9757dcc02bea9eb978bc133 0954c40c93223183cfd7ef09732d25eea00907dd Vladimir <vladimir.pinchuk01@gmail.com> 1552461412 +0300	commit: Switch to alex as tokeniser
+0954c40c93223183cfd7ef09732d25eea00907dd c485a189d15159b9d16727e9fe3d3dae93dd02a0 Vladimir <vladimir.pinchuk01@gmail.com> 1552479569 +0300	commit: TL22, Again!
+c485a189d15159b9d16727e9fe3d3dae93dd02a0 25551d20110a4020cf64ebb961cba55cea333c9a Vladimir <vladimir.pinchuk01@gmail.com> 1552479580 +0300	commit (amend): ML22

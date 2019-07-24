@@ -1,0 +1,97 @@
+start: a
+accept: ac
+reject: rj
+blank: _
+ 
+a 0 -> b 0 <
+a 1 -> b 1 <
+a 2 -> b 2 <
+b _ -> c _ <
+c _ -> d 0 >
+d _ -> e _ >
+e 0 -> e 0 >
+e 1 -> e 1 >
+e 2 -> e 2 >
+e _ -> f _ <
+f 0 -> ss o0 <
+f 1 -> ss o1 <
+f 2 -> ss o2 <
+ss 0 -> ss 0 <
+ss 1 -> ss 1 <
+ss 2 -> ss 2 <
+ss _ -> s _ >
+ 
+s 0 -> add0 _ <
+s 1 -> add1 _ <
+s 2 -> add2 _ <
+s o0 -> add0o _ <
+s o1 -> add1o _ <
+s o2 -> add2o _ <
+ 
+add0o _ -> add0o _ <
+add1o _ -> add1o _ <
+add2o _ -> add2o _ <
+ 
+add0o 0 -> add0oo 0 >
+add1o 0 -> add1oo 0 >
+add2o 0 -> add2oo 0 >
+ 
+add0o 1 -> add0oo 1 >
+add1o 1 -> add1oo 1 >
+add2o 1 -> add2oo 1 >
+ 
+add0oo _ -> add0 x <
+add1oo _ -> add1 x <
+add2oo _ -> add2 x <
+ 
+add0 _ -> add0 _ <
+add0 0 -> cryd 0 ^
+add0 1 -> cryd 1 ^
+ 
+add1 _ -> add1 _ <
+add1 0 -> cryd 1 >
+add1 1 -> cry 0 <
+ 
+add2 _ -> add2 _ <
+add2 0 -> cry 0 <
+add2 1 -> cry 1 <
+ 
+cry 0 -> cryd 1 ^
+cry _ -> cryd 1 ^
+cry 1 -> cry 0 <
+ 
+cryd 0 -> cryd 0 >
+cryd 1 -> cryd 1 >
+cryd _ -> mult0 _ <
+cryd x -> ans _ <
+ 
+ans 0 -> ans 0 <
+ans 1 -> ans 1 <
+ans _ -> ac _ >
+ 
+ret _ -> ret _ >
+ 
+ret 0 -> s 0 ^
+ret 1 -> s 1 ^
+ret 2 -> s 2 ^
+ 
+ret o0 -> s o0 ^
+ret o1 -> s o1 ^
+ret o2 -> s o2 ^
+ 
+mult0 _ -> acd 0 >
+mult1 _ -> acd 1 ^
+mult2 _ -> mult1 0 <
+ 
+mult0 0 -> mult0 0 <
+mult0 1 -> mult1 1 <
+ 
+mult1 0 -> mult0 1 <
+mult1 1 -> mult2 0 <
+ 
+mult2 0 -> mult1 0 <
+mult2 1 -> mult2 1 <
+ 
+acd 0 -> acd 0 >
+acd 1 -> acd 1 >
+acd _ -> ret _ >

@@ -1,0 +1,27 @@
+start: start
+accept: ac
+reject: rj
+blank: _
+ 
+ 
+start 0 -> start 0 >
+start 1 -> start 1 >
+start _ -> read _ <
+ 
+read 0 -> move0 r >
+read 1 -> move1 r >
+read _ -> ac _ >
+ 
+move0 0 -> move0 0 >
+move0 1 -> move0 1 >
+move0 _ -> ret0 0 <
+move1 0 -> move1 0 >
+move1 1 -> move1 1 >
+move1 _ -> ret1 1 <
+ 
+ret0 0 -> ret0 0 <
+ret0 1 -> ret0 1 <
+ret0 r -> read 0 <
+ret1 0 -> ret1 0 <
+ret1 1 -> ret1 1 <
+ret1 r -> read 1 <

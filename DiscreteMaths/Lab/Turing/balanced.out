@@ -1,0 +1,47 @@
+start: start
+accept: ac
+reject: rj
+blank: _
+ 
+start _ -> markMem _ <
+start ( -> markMem ( <
+start ) -> markMem ) <
+     
+markMem _ -> start1 $ >
+ 
+pushO ( -> pushO ( <
+pushO ) -> pushO ) <
+pushO $ -> pushO $ <
+pushO _ -> retloopO ( >
+ 
+retloopO ( -> retloopO ( >
+retloopO ) -> retloopO ) >
+retloopO $ -> retloopO $ >
+retloopO # -> start1 ( >
+ 
+popO ( -> popO ( <
+popO ) -> popO ) <
+popO $ -> popO $ <
+popO _ -> checkO _ >
+ 
+checkO ( -> retloopO_chk _ >
+checkO ) -> rj ) ^
+checkO $ -> rj ) ^
+ 
+retloopO_chk ( -> retloopO_chk ( >
+retloopO_chk ) -> retloopO_chk ) >
+retloopO_chk $ -> retloopO_chk $ >
+retloopO_chk # -> start1 ) >
+ 
+start1 ( -> pushO # <
+start1 ) -> popO # <
+start1 _ -> terminate _ <
+ 
+terminate ( -> terminate ( <
+terminate ) -> terminate ) <
+terminate _ -> terminate _ <
+terminate $ -> terminate2 $ <
+ 
+terminate2 _ -> ac _ ^
+terminate2 ( -> rj _ ^
+terminate2 ) -> rj _ ^
